@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html dir="rtl">
+  <head>
+    <title>Right-to-Left Languages</title>
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+var markers = [
+    ['Bondi Beach', -33.890542, 151.274856],
+    ['Bondi Beach1', -33.89054, 151.2748565],
+    ['Bondi Beach2', -33.8905, 151.27485655],
+    ['Bondi Beach3', -33.890542555, 151.274856555],
+    ['Bondi Beach4', -33.8905425555, 151.2748565555]
+];
+
+
+function initializeMaps() {
+    var latlng = new google.maps.LatLng(-33.92, 151.25);
+    var myOptions = {
+        zoom: 10,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: false
+    };
+    var map = new google.maps.Map(document.getElementById("map"),myOptions);
+    var infowindow = new google.maps.InfoWindow(), marker, i;
+    for (i = 0; i < markers.length; i++) {  
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(markers[i][1], markers[i][2]),
+            map: map
+        });
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infowindow.setContent(markers[i][0]);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+    }
+}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGIWBf2DdI0KjJWW6Acjw0i0fGF4SKsro&language=ar&region=EG&callback=initializeMaps"></script>
+  </body>
+</html>
+
+
+
