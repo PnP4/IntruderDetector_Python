@@ -1,4 +1,7 @@
 import time, os
+import json
+import sensor
+import requests
 
 ADC_PATH= os.path.normpath('/proc/')
 ADC_FILENAME = "adc"
@@ -16,3 +19,19 @@ while True:
     numvalue=int(value.split(":")[1])
     print numvalue*multiplevalue
     fd.close()
+
+url = "http://192.168.1.3:4000"
+
+
+def method(data):
+    try:
+        while True:
+
+            datasend = {}
+
+            r = requests.post(url, json=datasend)
+            print r
+            # print json.dumps(datasend)
+
+    except Exception:
+        print Exception.message

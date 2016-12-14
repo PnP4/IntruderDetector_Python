@@ -1,6 +1,9 @@
 import numpy as np
 import cv2
 import base64
+import detector
+import json
+import requests
 
 
 #image_64_decode = base64.decodestring("THE IMAGE BASE64STRING") #image string
@@ -15,6 +18,24 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 print len(faces)
+
+def callback(ch, method, properties, body):
+    data = json.loads(body)
+
+
+
+def method(data):
+    try:
+        while True:
+
+            datasend = {}
+
+            #r = requests.post(url, json=datasend)
+            print data
+            # print json.dumps(datasend)
+
+    except Exception:
+        print Exception.message
 
 # for (x,y,w,h) in faces:
 #     cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
