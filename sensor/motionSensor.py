@@ -1,4 +1,6 @@
 import time, os
+import json
+import __init__
 
 ADC_PATH= os.path.normpath('/proc/')
 ADC_FILENAME = "adc"
@@ -16,3 +18,11 @@ while True:
     numvalue=int(value.split(":")[1])
     print numvalue*multiplevalue
     fd.close()
+
+while True:
+    try:
+        while True:
+            __init__.socket.send()
+
+    except Exception, e:
+        print e
